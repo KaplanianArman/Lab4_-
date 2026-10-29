@@ -161,3 +161,11 @@ perimeter (float) : вещественное положительное числ
 #### *Примеры вызова функции:*
 perimeter(10) = $2 \cdot \pi \cdot 10$ = 62.83185307179586\
 perimeter(11) = $2 \cdot \pi \cdot 11$ = 69.11503837897544
+
+# *ИСТОРИЯ ИЗМЕНЕНИЙ ПРОЕКТА*
+```
+* b3b7127 (HEAD -> main) Added tests in circle.py
+* 10e7c14 Added tests in triangle.py
+* 15d53dd Added tests in square.py
+* a48d6be Added tests in rectangle.py
+```
