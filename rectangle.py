@@ -28,20 +28,48 @@ def perimeter(a, b):
     return (a + b) * 2
 
 class RectangleTestCase(unittest.TestCase):
+    def test_negative_width(self):
+        w, h = -10, 20
+        with self.assertRaises(ValueError):
+            area(w, h)
+        with self.assertRaises(ValueError):
+            perimeter(w, h)
+
+    def test_negative_both(self):
+        w, h = -10, -20
+        with self.assertRaises(ValueError):
+            area(w, h)
+        with self.assertRaises(ValueError):
+            perimeter(w, h)
+
+    def test_string_width(self):
+        w, h = '10', 20
+        with self.assertRaises(TypeError):
+            area(w, h)
+        with self.assertRaises(TypeError):
+            perimeter(w, h)
+
+    def test_string_both(self):
+        w, h = 'abc', 'def'
+        with self.assertRaises(TypeError):
+            area(w, h)
+        with self.assertRaises(TypeError):
+            perimeter(w, h)
+
     def test_zero_width(self):
         w, h = 0, 10
         res_area = area(w, h)
         res_perimeter = perimeter(w, h)
         self.assertEqual(res_area, 0)
         self.assertEqual(res_perimeter, 20)
-        
+
     def test_zero_height(self):
         w, h = 20, 0
         res_area = area(w, h)
         res_perimeter = perimeter(w, h)
         self.assertEqual(res_area, 0)
         self.assertEqual(res_perimeter, 40)
-       
+
     def test_square(self):
         w, h = 10, 10
         res_area = area(w, h)

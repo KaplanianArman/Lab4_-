@@ -28,13 +28,41 @@ def perimeter(r):
     return 2 * math.pi * r
 
 class CircleTestCase(unittest.TestCase):
+    def test_negative_radius(self):
+        r = -24
+        with self.assertRaises(ValueError):
+            area(r)
+        with self.assertRaises(ValueError):
+            perimeter(r)
+
+    def test_negative_unit_radius(self):
+        r = -1
+        with self.assertRaises(ValueError):
+            area(r)
+        with self.assertRaises(ValueError):
+            perimeter(r)
+
+    def test_string_num(self):
+        r = '24'
+        with self.assertRaises(TypeError):
+            area(r)
+        with self.assertRaises(TypeError):
+            perimeter(r)
+
+    def test_string_word(self):
+        r = 'abc'
+        with self.assertRaises(TypeError):
+            area(r)
+        with self.assertRaises(TypeError):
+            perimeter(r)
+
     def test_zero_radius(self):
         r = 0
         res_area = area(r)
         res_perimeter = perimeter(r)
         self.assertAlmostEqual(res_area, 0.0)
         self.assertAlmostEqual(res_perimeter, 0.0)
-        
+
     def test_default(self):
         r = 24
         res_area = area(r)

@@ -29,20 +29,48 @@ def perimeter(a, b, c):
     return a + b + c
 
 class TriangleTestCase(unittest.TestCase):
+    def test_negative_base(self):
+        a, b, c, h = -6, 4, 5, 2
+        with self.assertRaises(ValueError):
+            area(a, h)
+        with self.assertRaises(ValueError):
+            perimeter(a, b, c)
+
+    def test_negative_height(self):
+        a, b, c, h = 6, -4, 5, -2
+        with self.assertRaises(ValueError):
+            area(a, h)
+        with self.assertRaises(ValueError):
+            perimeter(a, b, c)
+
+    def test_string_base(self):
+        a, b, c, h = '6', 4, 5, 2
+        with self.assertRaises(TypeError):
+            area(a, h)
+        with self.assertRaises(TypeError):
+            perimeter(a, b, c)
+
+    def test_string_all(self):
+        a, b, c, h = 'a', 'b', 'c', 'h'
+        with self.assertRaises(TypeError):
+            area(a, h)
+        with self.assertRaises(TypeError):
+            perimeter(a, b, c)
+
     def test_zero_base(self):
         a, b, c, h = 0, 2, 3, 4
         res_area = area(a, h)
         res_perimeter = perimeter(a, b, c)
         self.assertAlmostEqual(res_area, 0.0)
         self.assertEqual(res_perimeter, 5)
-        
+
     def test_zero_height(self):
         a, b, c, h = 1, 2, 3, 0
         res_area = area(a, h)
         res_perimeter = perimeter(a, b, c)
         self.assertAlmostEqual(res_area, 0.0)
         self.assertEqual(res_perimeter, 6)
-       
+
     def test_default(self):
         a, b, c, h = 6, 4, 5, 2
         res_area = area(a, h)
